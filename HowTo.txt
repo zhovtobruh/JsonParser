@@ -1,0 +1,16 @@
+how to build:
+
+  mkdir build 
+  cd build 
+  cmake .. 
+  make 
+  
+how to run 
+
+  JsonParser -i input_file -o output_file 
+
+check program usage 
+  JsonParser --help
+
+
+
