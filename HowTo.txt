@@ -11,6 +11,11 @@ how to run
 
 check program usage 
   JsonParser --help
+  
+  
+Note - boost property tree treats elements of json array with key equal to empty string and 
+it seems that does not support stable sorting. Due to this the output can be different than expected. 
+This issue can be solved with using stable sorting.
 
 
 
