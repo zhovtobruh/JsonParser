@@ -22,7 +22,9 @@ JsonParser::JsonParser(std::string json_file, std::string out_file)
      std::cout<<"Cannot parse json file "<<std::endl;
      std::cout<<ex.what()<<std::endl;
      std::cout<<"Exit."<<std::endl;
+     exit(1);
    }
+   root_tree.sort();
    if(out_file == "std::cout")
    {
       print_to_file = false;
@@ -35,7 +37,7 @@ JsonParser::JsonParser(std::string json_file, std::string out_file)
 
 JsonParser::~JsonParser()
 {
-   if(print_to_file) out.close();
+
 }
 
 void JsonParser::print()
@@ -48,7 +50,7 @@ void JsonParser::print()
     return;
   }
   this->print_json(root_tree, "");
-
+  if(print_to_file) out.close();
 }
 
 
@@ -81,7 +83,7 @@ void JsonParser::print_json(boost::property_tree::ptree& pt, std::string path)
    {
      std::string key = iter->first; 
      child = iter->second;
-     //std::cout<<" Key "<<key<<std::endl;
+     child.sort();
      if(key  == "")
      {
        str_count = std::to_string(count);
@@ -90,6 +92,7 @@ void JsonParser::print_json(boost::property_tree::ptree& pt, std::string path)
        count++;
      
      }else{
+       
        path_str = (path == "") ? key: path+"."+key ;
        this->print_json(child,path_str);
      
